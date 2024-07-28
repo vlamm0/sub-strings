@@ -7,26 +7,12 @@ def getString()
   return input
 end
 
-def formatString(string)
+# returns a hash where the string is checked against a dictionary 
+def neoSubstring(string, dictionary)
   string.downcase!
-  string.gsub!(/[^\w\s]/, '')
-  formattedStirng = string.split(" ")
-  return formattedStirng
+  dictionary.reduce(Hash.new(0)) {|checkHash, word|
+  if string.include?(word) then checkHash[word] = string.scan(/#{word}/).length end
+  checkHash}
 end
 
-def substring(string, dictionary)
-  #lookupHash = Hash.new
-  arr = formatString(string)
-  p arr
-  arr.reduce(Hash.new(0)) {|lookupHash, word| 
-  p lookupHash
-  if dictionary.include?(word)
-    lookupHash[word] += 1
-  end
-  lookupHash
-  }
-  #return lookupHash
-end
-
-p substring("Howdy partner, sit down! How's it going?", DICTIONARY)
-#Howdy partner, sit down! How's it going?"
+p neoSubstring(getString(), DICTIONARY)
