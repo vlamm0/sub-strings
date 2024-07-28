@@ -7,4 +7,13 @@ def getString()
   puts input
 end
 
+def substring(string)
+  lookupHash = Hash.new
+  if DICTIONARY.include?(string)
+    lookupHash[string] = 1
+  end
+  return lookupHash
+end
+
+p substring("go")
 
