@@ -2,17 +2,18 @@ DICTIONARY = ["below","down","go","going","horn","how","howdy","it","i","low","o
 
 # gets input string from user
 def getString()
-  puts "Enter string to cross-check with dictionary"
+  puts "Enter string to check against dictionary"
   input = gets.chomp
   return input
 end
 
 # returns a hash where the string is checked against a dictionary 
-def neoSubstring(string, dictionary)
+def substring(string, dictionary)
   string.downcase!
   dictionary.reduce(Hash.new(0)) {|checkHash, word|
-  if string.include?(word) then checkHash[word] = string.scan(/#{word}/).length end
+  #checks how many dictionary words exist within given string
+  if string.include?(word) then checkHash[word] = string.scan(/#{word}/).length end 
   checkHash}
 end
 
-p neoSubstring(getString(), DICTIONARY)
+p substring(getString(), DICTIONARY)
